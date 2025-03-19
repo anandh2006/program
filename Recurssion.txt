@@ -1,0 +1,52 @@
+Fibonacci Series
+1)Recurssive approach
+
+def fibonacci(n):
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+n = 10  # Given input
+fib_sequence = [fibonacci(i) for i in range(n + 1)]  # Generate Fibonacci series
+print(fib_sequence)
+
+2)Iterative Approach (More Efficient)
+
+def fibonacci_iterative(n):
+    fib_series = [0, 1]
+    for i in range(2, n + 1):
+        fib_series.append(fib_series[i - 1] + fib_series[i - 2])
+    return fib_series
+
+n = 10  # Given input
+print(fibonacci_iterative(n))
+
+JAVA
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class FibonacciIterative {
+    public static List<Integer> fibonacciIterative(int n) {
+        List<Integer> fibSeries = new ArrayList<>();
+        
+        if (n >= 0) fibSeries.add(0); // First Fibonacci number
+        if (n >= 1) fibSeries.add(1); // Second Fibonacci number
+        
+        for (int i = 2; i <= n; i++) {
+            int nextFib = fibSeries.get(i - 1) + fibSeries.get(i - 2);
+            fibSeries.add(nextFib);
+        }
+        
+        return fibSeries;
+    }
+
+    public static void main(String[] args) {
+        int n = 10; // Given input
+        System.out.println(fibonacciIterative(n)); // Print the Fibonacci sequence
+    }
+}
+
