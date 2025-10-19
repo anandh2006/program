@@ -25,3 +25,24 @@ class Solution:
                 new.append(arr[i])
         
         return new
+___________________________________________________________________________________________________________________________________________________________________________________
+
+class Solution:
+    def leaders(self, arr):
+        n = len(arr)
+        new = []
+        
+        # Start from the last element — it's always a leader
+        max_from_right = arr[-1]
+        new.append(max_from_right)
+        
+        # Traverse from right to left
+        for i in range(n - 2, -1, -1):
+            if arr[i] >= max_from_right:
+                max_from_right = arr[i]
+                new.append(arr[i])
+        
+        # Reverse to maintain original order
+        new.reverse()
+        return new
+
