@@ -1,0 +1,45 @@
+You are given two integer numbers in the form of string, the base a and the index b. You have to find the last digit of ab.
+
+Examples:
+
+Input: a = "3", b = "10"
+Output: 9
+Explanation: 310 = 59049. Last digit is 9.
+
+______________________________________________________________________________________________________________________________________________________
+
+class Solution:
+    def getLastDigit(self, a, b):
+        # code here 
+        if b == "0":
+        return 1  # anything^0 = 1
+
+    last = int(a[-1])
+
+    cycles = {
+        0: [0],
+        1: [1],
+        2: [2,4,8,6],
+        3: [3,9,7,1],
+        4: [4,6],
+        5: [5],
+        6: [6],
+        7: [7,9,3,1],
+        8: [8,4,2,6],
+        9: [9,1]
+    }
+
+    cycle = cycles[last]
+    cycle_len = len(cycle)
+
+    # compute b mod cycle length (b is string)
+    mod = 0
+    for digit in b:
+        mod = (mod * 10 + int(digit)) % cycle_len
+
+    index = mod - 1  # adjust for 0-based index
+    if index == -1:
+        index = cycle_len - 1
+
+    return cycle[index] 
+
